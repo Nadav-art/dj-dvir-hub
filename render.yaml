@@ -9,7 +9,7 @@ services:
     envVars:
       - key: RK_HUB_BIND
         value: "0.0.0.0"
-      - key: RK_ADMIN_TOKEN
-        value: "W6EJt0CF2gjH93Y_3mHOsqnt-taoGVlb"
       - key: PYTHON_VERSION
         value: "3.12.6"
+
+# NOTE: set RK_ADMIN_TOKEN as an env var in the Render dashboard (keep it out of this public repo).
