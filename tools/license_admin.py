@@ -627,7 +627,7 @@ def api_usage_admin():
 PAGE = """<!doctype html><html dir="rtl" lang="he"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>DJ Dvir · מרכז רישוי</title>
 <style>
-:root{--bg:#0b1020;--panel:#121a33;--line:#24325e;--ink:#eaf1ff;--mut:#8ea0cc;--acc:#18e0ff;--ok:#35f08a;--bad:#ff4d6d;--warn:#ffcf3a}
+:root{--bg:#f4f6fb;--panel:#ffffff;--line:#e4e8f1;--ink:#1e2440;--mut:#6b7694;--acc:#4a6cf7;--ok:#1f9d55;--bad:#e5484d;--warn:#d98e00}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 'Rubik',system-ui,sans-serif}
 header{display:flex;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid var(--line)}
 header b{font-size:20px}header .sub{color:var(--mut);font-size:13px}
@@ -636,26 +636,26 @@ main{max-width:1060px;margin:0 auto;padding:18px 22px 60px}
 h2{margin:0 0 10px;font-size:16px;color:var(--acc)}
 form.new{display:grid;grid-template-columns:1.2fr 1.2fr .8fr .6fr .9fr 1fr auto;gap:8px;align-items:end}
 label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut)}
-input,select{background:#0d1428;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:14px}
-button{background:var(--acc);color:#04222b;border:0;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
+input,select{background:#f7f9fc;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:14px}
+button{background:var(--acc);color:#fff;border:0;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
 button.ghost{background:transparent;color:var(--mut);border:1px solid var(--line)}
 button.danger{background:transparent;color:var(--bad);border:1px solid var(--bad)}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:8px 9px;text-align:right;border-bottom:1px solid var(--line);vertical-align:top}
 th{color:var(--mut);font-weight:600;font-size:12px}
 .tier{padding:2px 9px;border-radius:99px;font-size:12px;font-weight:700}
-.tier.pro{background:#123c56;color:#6fd9ff}.tier.studio{background:#3c1656;color:#d49bff}.tier.free{background:#1c2746;color:#9fb3e8}
-.tier.trial{background:#4a3a12;color:#ffcf3a}
-.chip{display:inline-flex;gap:8px;align-items:baseline;background:#0d1428;border:1px solid var(--line);border-radius:11px;padding:9px 14px;font-size:12.5px;color:var(--mut)}
+.tier.pro{background:#e3f0fb;color:#1f6fb0}.tier.studio{background:#f0e5fb;color:#7a3fc0}.tier.free{background:#eef1f8;color:#5a6b9a}
+.tier.trial{background:#fdf3d8;color:#b5880f}
+.chip{display:inline-flex;gap:8px;align-items:baseline;background:#f7f9fc;border:1px solid var(--line);border-radius:11px;padding:9px 14px;font-size:12.5px;color:var(--mut)}
 .chip b{font-size:19px;color:var(--ink);font-weight:800}
-.chip.ok{border-color:#1c5a3a}.chip.warn{border-color:#6a561a}.chip.bad{border-color:#5a1f2e}
+.chip.ok{border-color:#bfe6cf}.chip.warn{border-color:#f0dca0}.chip.bad{border-color:#f3c2c6}
 .chip.ok b{color:var(--ok)}.chip.warn b{color:var(--warn)}.chip.bad b{color:var(--bad)}
 .dleft{font-size:11px;font-weight:700}.dleft.ok{color:var(--ok)}.dleft.warn{color:var(--warn)}.dleft.bad{color:var(--bad)}
-.mini{background:#0d1428;color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600}
+.mini{background:#f7f9fc;color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:4px 8px;font-size:12px;cursor:pointer;font-weight:600}
 .mini:hover{border-color:var(--acc)}.src{font-size:11px;color:var(--mut)}
 .key{font-family:ui-monospace,monospace;font-size:11px;color:var(--mut);max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr;display:inline-block;vertical-align:middle}
 .rev{color:var(--bad);font-weight:700}.live{color:var(--ok);font-weight:700}
-.copy{cursor:pointer;border:1px solid var(--line);background:#0d1428;color:var(--ink);border-radius:7px;padding:3px 9px;font-size:12px}
+.copy{cursor:pointer;border:1px solid var(--line);background:#f7f9fc;color:var(--ink);border-radius:7px;padding:3px 9px;font-size:12px}
 .msg{min-height:20px;color:var(--ok);font-size:13px;margin-top:8px}
 </style></head><body>
 <header><b>🔑 DJ Dvir · מרכז רישוי</b><span class="sub">ממשק ניהול נפרד · המפתח הפרטי נשאר רק במחשב הזה · אין סליקה בשלב זה</span></header>
