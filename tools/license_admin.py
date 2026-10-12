@@ -333,6 +333,8 @@ class CheckinIn(BaseModel):
     platform: str = ""
     event: str = ""     # e.g. "launch", "server_start_failed" — reported by the Electron launcher itself
     error: str = ""     # a short error message / log tail when something failed, so failures are visible remotely
+    user_email: str = ""  # the signed-in user (Google or email+password) — links this install to a real person
+    user_name: str = ""
 
 
 @app.post("/api/checkin")
@@ -349,6 +351,10 @@ def api_checkin(body: CheckinIn, request: Request):
     it.update({"machine": body.machine, "tier": body.tier or "free", "customer": body.customer,
                "licensed": bool(body.ok), "ver": body.ver, "platform": body.platform, "ip": ip, "ips": ips,
                "last_seen": time.strftime("%Y-%m-%d %H:%M"), "count": it.get("count", 0) + 1})
+    if body.user_email:                                   # the signed-in identity (Google / email+password)
+        it["user_email"] = body.user_email
+    if body.user_name:
+        it["user_name"] = body.user_name
     if body.event:
         it["last_event"] = body.event; it["last_event_at"] = time.strftime("%Y-%m-%d %H:%M")
     if body.error:                                        # a failure report → keep the last few, flag the install
@@ -757,7 +763,7 @@ async function revoke(cid){const r=await j('/api/customers/'+cid+'/revoke',{meth
  load();loadOverview();loadInst()}
 async function loadInst(){const d=await j('/api/installs');const tb=document.querySelector('#itbl tbody');
 tb.innerHTML=d.installs.map(i=>`<tr${(i.healthy===false||i.last_error)?' style="background:rgba(229,72,77,.09)"':''}>
-<td><b>${esc(i.customer||'אנונימי')}</b> ${(i.healthy===false||i.last_error)?'<span style="color:#e5484d;font-weight:800">⚠ תקלה</span>':(i.last_event==='launch'?'<span style="color:#2faa5a" title="עלתה תקין">✓</span>':'')}<div style="font-size:11px;color:var(--mut);direction:ltr">${esc(i.install_id)} · ${esc(i.machine||'')}</div>${i.last_error?`<div style="font-size:11px;color:#e5484d;direction:ltr;max-width:360px;white-space:normal;margin-top:3px">${esc(i.last_error_at||'')} · ${esc((i.last_error||'').slice(0,180))}</div>`:''}</td>
+<td><b>${esc(i.user_name||i.customer||'אנונימי')}</b> ${(i.healthy===false||i.last_error)?'<span style="color:#e5484d;font-weight:800">⚠ תקלה</span>':(i.last_event==='launch'?'<span style="color:#2faa5a" title="עלתה תקין">✓</span>':'')}${i.user_email?`<div style="font-size:11.5px;color:var(--acc,#4a6cf7);direction:ltr">📧 ${esc(i.user_email)}</div>`:'<div style="font-size:11px;color:var(--mut)">— לא מחובר חשבון</div>'}<div style="font-size:11px;color:var(--mut);direction:ltr">🌐 ${esc(i.ip||'?')} · ${esc(i.install_id)} · ${esc(i.machine||'')}</div>${i.last_error?`<div style="font-size:11px;color:#e5484d;direction:ltr;max-width:360px;white-space:normal;margin-top:3px">${esc(i.last_error_at||'')} · ${esc((i.last_error||'').slice(0,180))}</div>`:''}</td>
 <td>${i.licensed?'<span class="tier '+esc(i.tier)+'">'+esc(i.tier)+'</span>':'<span class="tier free">חינמי</span>'}</td>
 <td>${esc(i.last_seen||'')}<div style="font-size:11px;color:var(--mut)">מאז ${esc(i.first_seen||'')}</div></td>
 <td>${esc(i.ver||'—')} <span style="color:var(--mut);font-size:11px">${esc(i.platform||'')}</span></td>
